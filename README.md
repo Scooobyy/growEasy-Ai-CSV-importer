@@ -66,7 +66,7 @@ NODE_ENV=development
 cd backend
 npm run dev
 ```
-Backend runs on `http://localhost:5000`
+Backend runs on `process.env.NEXT_PUBLIC_API_URL`
 
 ### Start Frontend Development Server
 ```bash
