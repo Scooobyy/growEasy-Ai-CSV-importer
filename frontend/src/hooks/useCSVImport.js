@@ -18,7 +18,7 @@ export function useCSVImport() {
       const formData = new FormData();
       formData.append('csvFile', file);
 
-      const response = await axios.post(`${API_URL}/csv/upload`, formData, {
+      const response = await axios.post(`${API_URL}/api/csv/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -44,7 +44,7 @@ export function useCSVImport() {
     setError(null);
 
     try {
-      const response = await axios.post(`${API_URL}/csv/process`, {
+      const response = await axios.post(`${API_URL}/api/csv/process`, {
         records,
       });
 

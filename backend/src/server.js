@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-frontend-url.com'],
+  origin: ['http://localhost:3000', 'https://groweasy-frontend-gx56.onrender.com'],
   credentials: true
 }));
 
