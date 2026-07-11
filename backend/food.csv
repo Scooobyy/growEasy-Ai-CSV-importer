@@ -1,0 +1,50 @@
+Dish Name,Calories (kcal),Carbohydrates (g),Protein (g),Fats (g),Free Sugar (g),Fibre (g),Sodium (mg),Calcium (mg),Iron (mg),Vitamin C (mg),Folate (µg),email,phone
+Hot tea (Garam Chai),16.14,2.58,0.39,0.53,2.58,0.0,3.12,14.2,0.02,0.5,1.8,customer1@example.com,9876543210
+Instant coffee,23.16,3.65,0.64,0.75,3.62,0.0,4.92,20.87,0.06,1.51,5.6,customer2@example.com,9876543211
+Espreso coffee,51.54,6.62,1.75,2.14,6.53,0.0,13.98,58.1,0.15,1.51,5.53,customer3@example.com,9876543212
+Iced tea,10.34,2.7,0.03,0.01,2.7,0.0,0.23,1.18,0.02,5.95,1.28,customer4@example.com,9876543213
+Raw mango drink (Aam panna),35.92,9.05,0.16,0.03,7.49,0.61,79.82,7.08,0.14,45.3,14.05,customer5@example.com,9876543214
+Fruit Punch (with fresh juices),36.12,9.38,0.14,0.03,9.25,0.06,2.63,5.07,0.1,41.44,24.57,customer6@example.com,9876543215
+Fruit Punch (with squashes),23.13,5.99,0.07,0.02,5.88,0.17,2.26,3.3,0.06,15.08,9.13,customer7@example.com,9876543216
+Lemonade,20.8,5.48,0.03,0.01,5.47,0.02,28.52,1.84,0.05,5.27,2.11,customer8@example.com,9876543217
+Lem-o-gin,21.52,5.55,0.08,0.03,5.38,0.13,28.13,2.2,0.09,5.68,2.92,customer9@example.com,9876543218
+Cumin infused water (Jeere/Zeere ka pani),9.09,1.86,0.17,0.11,1.46,0.46,189.6,10.84,0.32,3.61,3.14,customer10@example.com,9876543219
+Coco pine cooler,32.75,5.72,0.56,1.0,5.52,0.26,23.2,17.81,0.13,10.67,12.64,customer11@example.com,9876543220
+Summer cooler,22.43,5.43,0.37,0.04,5.21,0.2,1.57,8.13,0.28,103.5,63.89,customer12@example.com,9876543221
+Hot cocoa,90.1,9.23,3.36,4.56,9.01,0.0,24.2,113.66,0.31,3.62,13.79,customer13@example.com,9876543222
+Cold coffee with ice cream,67.85,11.24,1.57,2.11,11.18,0.01,13.84,53.29,0.12,2.53,9.49,customer14@example.com,9876543223
+Banana milkshake (Kele milkshake),65.31,9.15,1.84,2.37,7.96,0.26,13.61,62.64,0.13,6.84,19.83,customer15@example.com,9876543224
+Mango milkshake (Aam milkshake),56.9,7.23,1.73,2.35,7.15,0.26,13.27,62.33,0.15,20.1,53.68,customer16@example.com,9876543225
+Pineapple milkshake (Ananas milkshake),55.72,7.62,1.66,2.23,7.6,0.0,14.05,59.92,0.11,10.22,17.45,customer17@example.com,9876543226
+Orange milkshake (Narangi milkshake),57.42,7.11,1.86,2.52,7.08,0.0,14.63,67.42,0.11,10.82,16.85,customer18@example.com,9876543227
+Egg nog,97.14,8.15,4.78,5.11,8.06,0.02,40.65,102.13,0.43,4.82,41.91,customer19@example.com,9876543228
+Sweet Lassi (Meethi lassi),35.66,6.51,1.29,0.68,6.51,0.0,18.31,45.65,0.03,1.0,18.0,customer20@example.com,9876543229
+Lassi (salted),18.84,1.86,1.35,0.72,1.84,0.02,65.4,47.78,0.04,1.02,18.07,customer21@example.com,9876543230
+Cheese and chilli sandwich ,218.11,27.4,6.8,9.78,2.38,2.08,437.5,113.79,0.99,12.3,16.14,customer22@example.com,9876543231
+Egg sandwich (Ande ka sandwich),285.96,29.16,8.69,15.8,1.86,1.88,461.67,110.13,1.44,0.0,14.92,customer23@example.com,9876543232
+Cucumber sandwich (Kheere ka sandwich),188.6,25.77,4.8,8.0,1.64,2.45,362.64,87.84,1.02,1.53,12.96,customer24@example.com,9876543233
+Cheese and pineapple sandwich (Cheese aur ananas ka sandwich),257.71,29.1,8.2,12.8,4.1,2.33,571.96,199.73,1.04,3.64,12.08,customer25@example.com,9876543234
+Cheese and tomato sandwich (Cheese aur tamatar ke sandwich),243.32,26.92,7.92,12.27,2.85,1.97,549.71,191.2,1.0,3.16,12.18,customer26@example.com,9876543235
+Chicken sandwich,253.27,25.38,13.12,11.75,1.6,1.64,389.67,89.56,1.19,0.0,11.1,customer27@example.com,9876543236
+Peanut and tomato sandwich (Moongfali aur tamatar ka sandwich),291.43,28.54,9.53,16.14,2.82,4.03,364.99,94.03,1.58,3.16,22.04,customer28@example.com,9876543237
+Rainbow sandwich,272.75,34.26,7.75,12.54,4.05,2.1,612.49,172.04,1.2,1.01,10.38,customer29@example.com,9876543238
+Club sandwich ,235.32,18.51,7.31,15.12,2.01,1.81,461.66,115.68,0.86,6.0,17.42,customer30@example.com,9876543239
+Vegetarian club sandwich,198.33,19.68,5.45,11.33,2.08,2.06,305.36,122.44,0.77,6.0,17.53,customer31@example.com,9876543240
+Pin wheel sandwich,311.52,14.0,8.77,24.93,1.45,0.93,374.39,67.75,1.36,0.0,9.04,customer32@example.com,9876543241
+Carrot apple sandwich (Gajar aur seb ka sandwich),214.11,29.04,5.3,9.12,5.3,3.66,302.88,118.05,1.8,2.7,21.7,customer33@example.com,9876543242
+Salami sandwich,255.59,21.54,8.7,15.51,2.0,1.97,662.75,73.54,1.11,1.25,12.65,customer34@example.com,9876543243
+Vegetable and mayonnaise sandwich,244.26,23.2,4.47,15.4,2.35,2.35,342.7,79.53,0.91,12.9,17.05,customer35@example.com,9876543244
+Egg and tomato sandwich (Ande aur tamatar ka sandwich),222.11,25.9,7.66,10.51,2.09,1.77,423.26,95.71,1.3,1.98,16.33,customer36@example.com,9876543245
+Sweet open sandwich,244.25,39.24,4.99,8.15,12.23,2.36,205.27,85.18,1.15,1.65,13.05,customer37@example.com,9876543246
+Mushroom and cheese sandwich (toasted),227.42,21.01,7.79,13.01,2.11,2.28,456.57,172.35,0.84,0.0,12.7,customer38@example.com,9876543247
+Cheese and tomato sandwich (toasted) (Cheese aur tamatar ke sandwich (toasted)),224.58,21.42,6.82,12.95,2.67,1.78,457.94,169.22,0.82,6.32,14.48,customer39@example.com,9876543248
+Pea potato sandwich (toasted) (Matar aloo ka sandwich),164.9,25.17,4.6,5.43,1.33,2.89,262.63,64.15,1.11,14.11,21.01,customer40@example.com,9876543249
+Paneer pea sandwich (toasted) (Paneer matar ka sandwich),249.56,24.05,12.4,11.98,6.4,2.12,268.9,274.1,1.26,4.85,52.13,customer41@example.com,9876543250
+Chicken sandwich (toasted),167.37,18.82,12.08,5.32,2.13,1.64,327.55,99.99,0.99,12.97,20.71,customer42@example.com,9876543251
+Pea keema sandwich (toasted) (Matar aur keema ka sandwich),171.78,20.26,11.06,5.61,1.94,2.45,290.07,70.79,1.51,5.5,18.29,customer43@example.com,9876543252
+Classic club sandwich,200.83,18.49,6.74,11.56,1.86,1.62,277.49,107.73,1.09,16.19,56.9,customer44@example.com,9876543253
+Sesame toast,495.19,11.15,1.9,49.38,1.46,1.32,128.78,43.44,0.72,6.92,8.87,customer45@example.com,9876543254
+Cracked wheat porridge (Meetha daliya),81.57,8.87,2.64,4.08,5.12,0.62,15.89,75.88,0.32,5.03,17.58,customer46@example.com,9876543255
+Semolina porridge (Suji/Rava daliya),100.89,12.39,3.75,4.08,7.54,0.7,23.21,108.52,0.36,5.03,22.71,customer47@example.com,9876543256
+Oatmeal Porridge,72.85,8.77,2.6,3.22,5.2,0.39,16.14,76.83,0.28,5.03,23.98,customer48@example.com,9876543257
+Cornflakes with milk,117.33,14.95,3.59,5.12,9.97,0.78,26.55,106.47,0.42,4.82,43.87,customer49@example.com,9876543258

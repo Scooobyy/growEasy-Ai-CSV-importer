@@ -1,0 +1,11 @@
+Customer Full Name,Business Email,Mobile Phone,Company Name,Business City,Region State,Country,Sales Rep,Deal Status,Follow Up Notes,Deal Value
+Alex Thompson,alex.t@manufacturing.com,4445556667,Industrial Manufacturing,Chicago,IL,USA,Tom Anderson,GOOD_LEAD_FOLLOW_UP,$50,000 deal in pipeline
+Maria Garcia,maria.g@retail.net,4447778889,Retail Solutions,Miami,FL,USA,Tom Anderson,SALE_DONE,$125,000 closed deal
+Steven Chen,steven.c@tech.io,4449990001,Software Innovations,Boston,MA,USA,Lisa Brown,DID_NOT_CONNECT,Sent 3 follow-up emails
+Rachel Green,rachel.g@services.com,4442223333,Consulting Group,Atlanta,GA,USA,Tom Anderson,GOOD_LEAD_FOLLOW_UP,Meeting scheduled next week
+Kevin Wilson,k.w@enterprise.org,4444445555,Enterprise Systems,Dallas,TX,USA,Lisa Brown,BAD_LEAD,Budget too low
+Amanda White,amanda.w@startup.io,4446667777,Startup Ventures,Denver,CO,USA,Tom Anderson,GOOD_LEAD_FOLLOW_UP,Interested in annual plan
+Daniel Lee,daniel.lee@corp.net,4448889999,Global Corporation,Seattle,WA,USA,Lisa Brown,DID_NOT_CONNECT,Left voicemail
+Jessica Brown,jessica.b@business.com,4441112222,Business Partners,Portland,OR,USA,Tom Anderson,SALE_DONE,$75,000 contract signed
+Chris Davis,chris.d@tech.io,4443334444,Tech Innovations,Phoenix,AZ,USA,Lisa Brown,GOOD_LEAD_FOLLOW_UP,Demo scheduled
+Sarah Miller,sarah.m@enterprise.com,4445556666,Enterprise Solutions,Houston,TX,USA,Tom Anderson,DID_NOT_CONNECT,No response yet

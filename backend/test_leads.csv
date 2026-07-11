@@ -1,0 +1,11 @@
+Client Name,EmailAddress,Contact Number,Organization,City,State,Region,Lead Owner,Status,Notes
+John Smith,john.smith@company.com,555-123-4567,Tech Corp,San Francisco,CA,USA,Sarah Johnson,GOOD_LEAD_FOLLOW_UP,Interested in premium package
+Jane Doe,jane.doe@startup.io,555-987-6543,Innovate Labs,Austin,TX,USA,Mike Wilson,DID_NOT_CONNECT,Left voicemail
+Robert Johnson,bob.johnson@enterprise.net,555-456-7890,Global Solutions,Seattle,WA,USA,Sarah Johnson,GOOD_LEAD_FOLLOW_UP,Scheduled demo
+Emily Davis,emily.d@business.org,555-321-0987,Digital Dynamics,Portland,OR,USA,Mike Wilson,BAD_LEAD,Budget constraints
+Michael Brown,m.brown@corp.com,555-654-3210,Future Systems,Denver,CO,USA,Sarah Johnson,GOOD_LEAD_FOLLOW_UP,Ready to purchase
+Sarah Wilson,sarah.w@tech.io,555-789-0123,Cloud Services,Phoenix,AZ,USA,Mike Wilson,DID_NOT_CONNECT,Email sent
+David Miller,david.m@startup.net,555-234-5678,NextGen Inc,Los Angeles,CA,USA,Sarah Johnson,GOOD_LEAD_FOLLOW_UP,Contract pending
+Lisa Anderson,lisa.a@business.com,555-876-5432,Smart Solutions,San Diego,CA,USA,Mike Wilson,SALE_DONE,Deal closed
+James Taylor,james.t@enterprise.io,555-543-2109,Data Corp,Houston,TX,USA,Sarah Johnson,GOOD_LEAD_FOLLOW_UP,Follow up next week
+Jennifer Martinez,jennifer.m@tech.org,555-109-8765,Innovation Hub,Dallas,TX,USA,Mike Wilson,DID_NOT_CONNECT,No response
