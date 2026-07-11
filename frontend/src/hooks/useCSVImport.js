@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'process.env.NEXT_PUBLIC_API_URL/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export function useCSVImport() {
   const [loading, setLoading] = useState(false);
