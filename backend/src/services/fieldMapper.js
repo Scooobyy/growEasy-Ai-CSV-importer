@@ -160,7 +160,20 @@ async function processBatch(records) {
     
   } catch (error) {
     console.error('AI processing error:', error);
-    // Fallback: return records with intelligent keyword matching
+    // Check if it's a rate limit error - if so, throw it up to be handled by outer catch
+    const errorMessage = error.message || (error.error && error.error.message) || JSON.stringify(error);
+    const isRateLimit = error.status === 429 || 
+                       error.code === 'rate_limit_exceeded' ||
+                       (error.error && error.error.code === 'rate_limit_exceeded') ||
+                       errorMessage.toLowerCase().includes('rate limit');
+    
+    if (isRateLimit) {
+      console.log('Rate limit detected in processBatch, throwing to outer handler');
+      throw error; // Re-throw to be caught by outer handler
+    }
+    
+    // For other errors, use fallback
+    console.log('Non-rate-limit AI error, using fallback mapping');
     return records.map(record => {
       const keys = Object.keys(record);
       const findField = (keywords) => {
