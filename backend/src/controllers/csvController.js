@@ -53,32 +53,55 @@ export const processCSV = async (req, res) => {
 
     // Try AI processing with Gemini
     let mappedRecords;
+    let rateLimitReached = false;
     try {
-      mappedRecords = await mapCSVToCRM(records);
+      const result = await mapCSVToCRM(records);
+      mappedRecords = result.records;
+      rateLimitReached = result.rateLimitReached;
     } catch (aiError) {
       console.error('AI processing failed, using fallback:', aiError);
-      // Fallback to basic mapping
-      mappedRecords = records.map(record => ({
-        created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
-        name: record.name || record.full_name || record.Name || record['Dish Name'] || '',
-        email: record.email || record.Email || '',
-        country_code: '+91',
-        mobile_without_country_code: record.phone || record.mobile || record.Phone || record.Mobile || '',
-        company: record.company || record.Company || '',
-        city: record.city || record.City || '',
-        state: record.state || record.State || '',
-        country: record.country || record.Country || 'India',
-        lead_owner: '',
-        crm_status: 'GOOD_LEAD_FOLLOW_UP',
-        crm_note: '',
-        data_source: '',
-        possession_time: '',
-        description: ''
-      }));
+      // Fallback to intelligent keyword matching
+      mappedRecords = records.map(record => {
+        const keys = Object.keys(record);
+        const findField = (keywords) => {
+          const key = keys.find(k => 
+            keywords.some(keyword => 
+              k.toLowerCase().includes(keyword.toLowerCase())
+            )
+          );
+          return key ? record[key] : '';
+        };
+
+        return {
+          created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
+          name: findField(['name', 'full name', 'customer', 'dish']),
+          email: findField(['email', 'mail', 'e-mail']),
+          country_code: '+91',
+          mobile_without_country_code: findField(['phone', 'mobile', 'cell', 'contact']).toString().replace(/\D/g, ''),
+          company: findField(['company', 'organization', 'business', 'employer']),
+          city: findField(['city']),
+          state: findField(['state', 'region', 'province']),
+          country: findField(['country']) || 'India',
+          lead_owner: findField(['sales rep', 'representative', 'owner', 'agent']),
+          crm_status: findField(['status', 'deal status', 'stage']) || 'GOOD_LEAD_FOLLOW_UP',
+          crm_note: findField(['note', 'follow up', 'comment', 'remark', 'deal value']),
+          data_source: '',
+          possession_time: '',
+          description: findField(['description', 'details', 'info'])
+        };
+      });
     }
     
     // Separate valid and skipped records
     const { valid, skipped, warnings } = separateRecords(mappedRecords);
+
+    // Add rate limit warning if applicable
+    if (rateLimitReached) {
+      warnings.push({
+        record: 'System',
+        message: 'Groq AI rate limit reached. Using intelligent keyword matching instead.'
+      });
+    }
 
     res.status(200).json({
       success: true,
@@ -87,8 +110,9 @@ export const processCSV = async (req, res) => {
       records: valid,
       skippedRecords: skipped,
       total: mappedRecords.length,
-      aiUsed: mappedRecords !== records, // Indicate if AI was used
-      warnings: warnings
+      aiUsed: mappedRecords !== records && !rateLimitReached, // Indicate if AI was used
+      warnings: warnings,
+      rateLimitReached: rateLimitReached
     });
     
   } catch (error) {

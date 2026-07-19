@@ -31,6 +31,7 @@ export async function mapCSVToCRM(csvRecords) {
   }
 
   const allResults = [];
+  let rateLimitReached = false;
   
   for (const batch of batches) {
     try {
@@ -40,33 +41,84 @@ export async function mapCSVToCRM(csvRecords) {
       await new Promise(resolve => setTimeout(resolve, 500));
     } catch (error) {
       console.error('Batch processing failed:', error);
-      // Continue with next batch
+      // Check if it's a rate limit error
+      if (error.status === 429 || error.code === 'rate_limit_exceeded') {
+        rateLimitReached = true;
+        console.warn('Rate limit reached, switching to intelligent keyword matching');
+        // Fall back to intelligent mapping for remaining batches
+        const fallbackResults = batch.map(record => {
+          const keys = Object.keys(record);
+          const findField = (keywords) => {
+            const key = keys.find(k => 
+              keywords.some(keyword => 
+                k.toLowerCase().includes(keyword.toLowerCase())
+              )
+            );
+            return key ? record[key] : '';
+          };
+
+          return {
+            created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
+            name: findField(['name', 'full name', 'customer', 'dish']),
+            email: findField(['email', 'mail', 'e-mail']),
+            country_code: '+91',
+            mobile_without_country_code: findField(['phone', 'mobile', 'cell', 'contact']).toString().replace(/\D/g, ''),
+            company: findField(['company', 'organization', 'business', 'employer']),
+            city: findField(['city']),
+            state: findField(['state', 'region', 'province']),
+            country: findField(['country']) || 'India',
+            lead_owner: findField(['sales rep', 'representative', 'owner', 'agent']),
+            crm_status: findField(['status', 'deal status', 'stage']) || 'GOOD_LEAD_FOLLOW_UP',
+            crm_note: findField(['note', 'follow up', 'comment', 'remark', 'deal value']),
+            data_source: '',
+            possession_time: '',
+            description: findField(['description', 'details', 'info'])
+          };
+        });
+        allResults.push(...fallbackResults);
+      } else {
+        // For other errors, continue with next batch
+        continue;
+      }
     }
   }
 
-  return allResults;
+  return { records: allResults, rateLimitReached };
 }
 
 async function processBatch(records) {
   // If AI is not enabled, use fallback directly
   if (!AI_CONFIG.isEnabled || !client) {
-    return records.map(record => ({
-      created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
-      name: record.name || record.full_name || record.Name || record['Dish Name'] || '',
-      email: record.email || record.Email || '',
-      country_code: '+91',
-      mobile_without_country_code: record.phone || record.mobile || record.Phone || record.Mobile || '',
-      company: record.company || record.Company || '',
-      city: record.city || record.City || '',
-      state: record.state || record.State || '',
-      country: record.country || record.Country || 'India',
-      lead_owner: '',
-      crm_status: 'GOOD_LEAD_FOLLOW_UP',
-      crm_note: '',
-      data_source: '',
-      possession_time: '',
-      description: ''
-    }));
+    return records.map(record => {
+      // Intelligent field mapping using keyword matching
+      const keys = Object.keys(record);
+      const findField = (keywords) => {
+        const key = keys.find(k => 
+          keywords.some(keyword => 
+            k.toLowerCase().includes(keyword.toLowerCase())
+          )
+        );
+        return key ? record[key] : '';
+      };
+
+      return {
+        created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
+        name: findField(['name', 'full name', 'customer', 'dish']),
+        email: findField(['email', 'mail', 'e-mail']),
+        country_code: '+91',
+        mobile_without_country_code: findField(['phone', 'mobile', 'cell', 'contact']).toString().replace(/\D/g, ''),
+        company: findField(['company', 'organization', 'business', 'employer']),
+        city: findField(['city']),
+        state: findField(['state', 'region', 'province']),
+        country: findField(['country']) || 'India',
+        lead_owner: findField(['sales rep', 'representative', 'owner', 'agent']),
+        crm_status: findField(['status', 'deal status', 'stage']) || 'GOOD_LEAD_FOLLOW_UP',
+        crm_note: findField(['note', 'follow up', 'comment', 'remark', 'deal value']),
+        data_source: '',
+        possession_time: '',
+        description: findField(['description', 'details', 'info'])
+      };
+    });
   }
 
   try {
@@ -98,24 +150,36 @@ async function processBatch(records) {
     
   } catch (error) {
     console.error('AI processing error:', error);
-    // Fallback: return records with basic mapping
-    return records.map(record => ({
-      created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
-      name: record.name || record.full_name || record.Name || record['Dish Name'] || '',
-      email: record.email || record.Email || '',
-      country_code: '+91',
-      mobile_without_country_code: record.phone || record.mobile || record.Phone || record.Mobile || '',
-      company: record.company || record.Company || '',
-      city: record.city || record.City || '',
-      state: record.state || record.State || '',
-      country: record.country || record.Country || 'India',
-      lead_owner: '',
-      crm_status: 'GOOD_LEAD_FOLLOW_UP',
-      crm_note: '',
-      data_source: '',
-      possession_time: '',
-      description: ''
-    }));
+    // Fallback: return records with intelligent keyword matching
+    return records.map(record => {
+      const keys = Object.keys(record);
+      const findField = (keywords) => {
+        const key = keys.find(k => 
+          keywords.some(keyword => 
+            k.toLowerCase().includes(keyword.toLowerCase())
+          )
+        );
+        return key ? record[key] : '';
+      };
+
+      return {
+        created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
+        name: findField(['name', 'full name', 'customer', 'dish']),
+        email: findField(['email', 'mail', 'e-mail']),
+        country_code: '+91',
+        mobile_without_country_code: findField(['phone', 'mobile', 'cell', 'contact']).toString().replace(/\D/g, ''),
+        company: findField(['company', 'organization', 'business', 'employer']),
+        city: findField(['city']),
+        state: findField(['state', 'region', 'province']),
+        country: findField(['country']) || 'India',
+        lead_owner: findField(['sales rep', 'representative', 'owner', 'agent']),
+        crm_status: findField(['status', 'deal status', 'stage']) || 'GOOD_LEAD_FOLLOW_UP',
+        crm_note: findField(['note', 'follow up', 'comment', 'remark', 'deal value']),
+        data_source: '',
+        possession_time: '',
+        description: findField(['description', 'details', 'info'])
+      };
+    });
   }
 }
 
