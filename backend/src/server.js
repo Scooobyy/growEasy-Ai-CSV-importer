@@ -33,6 +33,18 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/csv', csvRoutes);
 
+// Root route
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    message: 'growEasy CSV Importer API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      csv: '/api/csv'
+    }
+  });
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
