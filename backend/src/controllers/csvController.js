@@ -78,7 +78,7 @@ export const processCSV = async (req, res) => {
     }
     
     // Separate valid and skipped records
-    const { valid, skipped } = separateRecords(mappedRecords);
+    const { valid, skipped, warnings } = separateRecords(mappedRecords);
 
     res.status(200).json({
       success: true,
@@ -87,7 +87,8 @@ export const processCSV = async (req, res) => {
       records: valid,
       skippedRecords: skipped,
       total: mappedRecords.length,
-      aiUsed: mappedRecords !== records // Indicate if AI was used
+      aiUsed: mappedRecords !== records, // Indicate if AI was used
+      warnings: warnings
     });
     
   } catch (error) {
@@ -102,6 +103,7 @@ export const processCSV = async (req, res) => {
 function separateRecords(records) {
   const valid = [];
   const skipped = [];
+  const warnings = [];
   
   records.forEach(record => {
     // Check if record has email or mobile
@@ -112,12 +114,21 @@ function separateRecords(records) {
     // Check if explicitly marked as skip
     const isSkipped = record.skip === true;
     
-    if ((hasEmail || hasMobile) && !isSkipped) {
-      valid.push(record);
-    } else {
+    // Add warning if missing contact info
+    if (!hasEmail && !hasMobile) {
+      warnings.push({
+        record: record.name || 'Unknown',
+        message: 'Missing email and phone number'
+      });
+      record.contact_warning = 'No email or phone provided';
+    }
+    
+    if (isSkipped) {
       skipped.push(record);
+    } else {
+      valid.push(record);
     }
   });
   
-  return { valid, skipped };
+  return { valid, skipped, warnings };
 }

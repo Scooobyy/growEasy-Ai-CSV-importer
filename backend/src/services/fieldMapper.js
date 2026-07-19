@@ -65,8 +65,7 @@ async function processBatch(records) {
       crm_note: '',
       data_source: '',
       possession_time: '',
-      description: '',
-      skip: !((record.email || record.Email) || (record.phone || record.mobile || record.Phone || record.Mobile))
+      description: ''
     }));
   }
 
@@ -115,8 +114,7 @@ async function processBatch(records) {
       crm_note: '',
       data_source: '',
       possession_time: '',
-      description: '',
-      skip: !((record.email || record.Email) || (record.phone || record.mobile || record.Phone || record.Mobile))
+      description: ''
     }));
   }
 }
@@ -133,7 +131,7 @@ Follow these rules strictly:
 3. created_at must be a valid date string
 4. If multiple emails exist, use first as email, others in crm_note
 5. If multiple phones exist, use first as mobile, others in crm_note
-6. Skip records without email OR mobile number by adding a "skip" field
+6. Do NOT skip records - process all records regardless of missing contact info
 7. Return ONLY valid JSON
 
 CSV Columns: ${allColumns.join(', ')}
@@ -159,8 +157,7 @@ Map each record to this CRM structure:
       crm_note: string,
       data_source: string (one of ${ALLOWED_SOURCES.join(', ')}, or empty),
       possession_time: string,
-      description: string,
-      skip: boolean (true if no email AND no mobile)
+      description: string
     }
   ]
 }
