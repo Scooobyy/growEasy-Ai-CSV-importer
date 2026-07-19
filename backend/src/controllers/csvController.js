@@ -60,7 +60,7 @@ export const processCSV = async (req, res) => {
       // Fallback to basic mapping
       mappedRecords = records.map(record => ({
         created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
-        name: record.name || record.full_name || record.Name || '',
+        name: record.name || record.full_name || record.Name || record['Dish Name'] || '',
         email: record.email || record.Email || '',
         country_code: '+91',
         mobile_without_country_code: record.phone || record.mobile || record.Phone || record.Mobile || '',

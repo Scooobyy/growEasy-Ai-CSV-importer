@@ -52,7 +52,7 @@ async function processBatch(records) {
   if (!AI_CONFIG.isEnabled || !client) {
     return records.map(record => ({
       created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
-      name: record.name || record.full_name || record.Name || '',
+      name: record.name || record.full_name || record.Name || record['Dish Name'] || '',
       email: record.email || record.Email || '',
       country_code: '+91',
       mobile_without_country_code: record.phone || record.mobile || record.Phone || record.Mobile || '',
@@ -101,7 +101,7 @@ async function processBatch(records) {
     // Fallback: return records with basic mapping
     return records.map(record => ({
       created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
-      name: record.name || record.full_name || record.Name || '',
+      name: record.name || record.full_name || record.Name || record['Dish Name'] || '',
       email: record.email || record.Email || '',
       country_code: '+91',
       mobile_without_country_code: record.phone || record.mobile || record.Phone || record.Mobile || '',
