@@ -41,8 +41,12 @@ export async function mapCSVToCRM(csvRecords) {
       await new Promise(resolve => setTimeout(resolve, 500));
     } catch (error) {
       console.error('Batch processing failed:', error);
-      // Check if it's a rate limit error
-      if (error.status === 429 || error.code === 'rate_limit_exceeded') {
+      // Check if it's a rate limit error (handle nested error structure)
+      const isRateLimit = error.status === 429 || 
+                         error.code === 'rate_limit_exceeded' ||
+                         (error.error && error.error.code === 'rate_limit_exceeded');
+      
+      if (isRateLimit) {
         rateLimitReached = true;
         console.warn('Rate limit reached, switching to intelligent keyword matching');
         // Fall back to intelligent mapping for remaining batches
