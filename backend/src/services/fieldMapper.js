@@ -41,10 +41,12 @@ export async function mapCSVToCRM(csvRecords) {
       await new Promise(resolve => setTimeout(resolve, 500));
     } catch (error) {
       console.error('Batch processing failed:', error);
-      // Check if it's a rate limit error (handle nested error structure)
+      // Check if it's a rate limit error (handle nested error structure and message content)
+      const errorMessage = error.message || (error.error && error.error.message) || '';
       const isRateLimit = error.status === 429 || 
                          error.code === 'rate_limit_exceeded' ||
-                         (error.error && error.error.code === 'rate_limit_exceeded');
+                         (error.error && error.error.code === 'rate_limit_exceeded') ||
+                         errorMessage.toLowerCase().includes('rate limit');
       
       if (isRateLimit) {
         rateLimitReached = true;
