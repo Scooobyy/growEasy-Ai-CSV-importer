@@ -42,11 +42,13 @@ export async function mapCSVToCRM(csvRecords) {
     } catch (error) {
       console.error('Batch processing failed:', error);
       // Check if it's a rate limit error (handle nested error structure and message content)
-      const errorMessage = error.message || (error.error && error.error.message) || '';
+      const errorMessage = error.message || (error.error && error.error.message) || JSON.stringify(error);
       const isRateLimit = error.status === 429 || 
                          error.code === 'rate_limit_exceeded' ||
                          (error.error && error.error.code === 'rate_limit_exceeded') ||
                          errorMessage.toLowerCase().includes('rate limit');
+      
+      console.log('Error detection - isRateLimit:', isRateLimit, 'errorMessage:', errorMessage);
       
       if (isRateLimit) {
         rateLimitReached = true;
@@ -82,8 +84,10 @@ export async function mapCSVToCRM(csvRecords) {
           };
         });
         allResults.push(...fallbackResults);
+        console.log('Fallback applied, processed', fallbackResults.length, 'records');
       } else {
         // For other errors, continue with next batch
+        console.log('Non-rate-limit error, skipping batch');
         continue;
       }
     }
